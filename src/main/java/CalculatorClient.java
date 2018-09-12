@@ -1,16 +1,22 @@
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class CalculatorClient extends Frame {
 
     private Font arialFont;
     private TextField displayField;
 
+    private ArrayList<Button> numericalButtons;
+    private ButtonListener buttonListener;
+
     public CalculatorClient(){
         super("Simple Calculator");
         setLayout(null);
 
+        this.buttonListener = new ButtonListener(this);
+        this.numericalButtons = new ArrayList<Button>();
         this.arialFont = new Font("Arial",1,30);
         setup();
     }
@@ -72,6 +78,7 @@ public class CalculatorClient extends Frame {
             }
             for(int row = 0; row < 3; row++){
                 Button button = new Button(String.valueOf(number));
+                button.setLabel(String.valueOf(number));
                 number++;
                 if(x > 0){
                     x = 25;
@@ -80,7 +87,14 @@ public class CalculatorClient extends Frame {
                 button.setFont(this.arialFont);
                 button.setBounds(x,y,50,50);
                 add(button);
+                this.numericalButtons.add(button);
             }
         }
+
+        this.buttonListener.setupNumericalListeners();
+    }
+
+    public ArrayList<Button> getNumericalButtons(){
+        return this.numericalButtons;
     }
 }

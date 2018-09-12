@@ -4,10 +4,14 @@ import java.awt.event.WindowEvent;
 
 public class CalculatorClient extends Frame {
 
+    private Font arialFont;
+    private TextField displayField;
+
     public CalculatorClient(){
         super("Simple Calculator");
         setLayout(null);
 
+        this.arialFont = new Font("Arial",1,30);
         setup();
     }
 
@@ -35,15 +39,48 @@ public class CalculatorClient extends Frame {
 
     public void setupLayout(){
         setupDisplayField();
+        setupButtons();
     }
 
     public void setupDisplayField(){
         TextField displayField = new TextField(40);
-        displayField.setBounds(50,50,150,50);
+        displayField.setBounds(25,40,450,50);
+        displayField.enableInputMethods(false);
+        Font newFont = new Font("Arial",Font.PLAIN,40);
+        displayField.setFont(newFont);
         add(displayField);
+        this.displayField = displayField;
+    }
+
+    public TextField getDisplayField(){
+        return this.displayField;
     }
 
     public void setupButtons(){
+        setupNumericalButtons();
+    }
 
+    public void setupNumericalButtons(){ //Grid size is 3 * 3
+        int x = 25;
+        int y = 95;
+        //Height & width are 50
+        int number = 1;
+        for(int column = 0; column < 3; column++){
+            if(column > 0){
+                y = 95;
+                y = y + column * 55; //Distance between buttons is 5
+            }
+            for(int row = 0; row < 3; row++){
+                Button button = new Button(String.valueOf(number));
+                number++;
+                if(x > 0){
+                    x = 25;
+                    x = x + row*55;
+                }
+                button.setFont(this.arialFont);
+                button.setBounds(x,y,50,50);
+                add(button);
+            }
+        }
     }
 }

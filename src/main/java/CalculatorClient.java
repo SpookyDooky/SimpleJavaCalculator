@@ -15,6 +15,9 @@ public class CalculatorClient extends Frame {
         super("Simple Calculator");
         setLayout(null);
 
+        setFocusable(true);
+        requestFocusInWindow();
+
         this.buttonListener = new ButtonListener(this);
         this.numericalButtons = new ArrayList<Button>();
         this.arialFont = new Font("Arial",1,30);
@@ -51,7 +54,7 @@ public class CalculatorClient extends Frame {
     public void setupDisplayField(){
         TextField displayField = new TextField(40);
         displayField.setBounds(25,40,450,50);
-        displayField.enableInputMethods(false);
+        displayField.setEditable(false);
         Font newFont = new Font("Arial",Font.PLAIN,40);
         displayField.setFont(newFont);
         add(displayField);
@@ -64,6 +67,7 @@ public class CalculatorClient extends Frame {
 
     public void setupButtons(){
         setupNumericalButtons();
+        this.buttonListener.setupAllButtons();
     }
 
     public void setupNumericalButtons(){ //Grid size is 3 * 3
@@ -90,8 +94,6 @@ public class CalculatorClient extends Frame {
                 this.numericalButtons.add(button);
             }
         }
-
-        this.buttonListener.setupNumericalListeners();
     }
 
     public ArrayList<Button> getNumericalButtons(){

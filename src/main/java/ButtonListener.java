@@ -29,6 +29,8 @@ public class ButtonListener {
                         String existingNumber = Start.getStart().getClient().getDisplayField().getText();
                         Start.getStart().getClient().getDisplayField().setText(existingNumber + currentButton.getLabel());
                     }
+                    Start.getStart().getClient().setFocusable(true);
+                    Start.getStart().getClient().requestFocusInWindow();
                 }
             });
         }
@@ -38,17 +40,21 @@ public class ButtonListener {
         this.client.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println(e.getExtendedKeyCode());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println(e.getExtendedKeyCode());
+                if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE){
+                    System.out.println("KIK");
+                    String current = Start.getStart().getClient().getDisplayField().getText();
+                    if(current != null) {
+                        Start.getStart().getClient().getDisplayField().setText(current.substring(0, current.length() - 1));
+                    }
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println(e.getExtendedKeyCode());
             }
         });
     }

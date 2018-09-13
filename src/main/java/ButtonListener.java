@@ -45,9 +45,8 @@ public class ButtonListener {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE){
-                    System.out.println("KIK");
                     String current = Start.getStart().getClient().getDisplayField().getText();
-                    if(current != null) {
+                    if(current.length() > 0) {
                         Start.getStart().getClient().getDisplayField().setText(current.substring(0, current.length() - 1));
                     }
                 }

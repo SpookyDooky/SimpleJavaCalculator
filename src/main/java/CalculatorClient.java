@@ -79,16 +79,15 @@ public class CalculatorClient extends Frame {
         int x = 25;
         int y = 95;
         //Height & width are 50
-        int number = 1;
+        int number = 9;
         for(int column = 0; column < 3; column++){
             if(column > 0){
                 y = 95;
                 y = y + column * 55; //Distance between buttons is 5
             }
             for(int row = 0; row < 3; row++){
-                Button button = new Button(String.valueOf(number));
-                button.setLabel(String.valueOf(number));
-                number++;
+                Button button = new Button(String.valueOf(((((2-column)*3) + 1) + row)));
+                number--;
                 if(x > 0){
                     x = 25;
                     x = x + row*55;

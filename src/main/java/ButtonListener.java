@@ -16,6 +16,7 @@ public class ButtonListener {
     public void setupAllButtons(){
         setupNumericalListeners();
         setupKeyboardButtons();
+        setupEraseButtons();
     }
 
     public void setupNumericalListeners(){
@@ -49,11 +50,30 @@ public class ButtonListener {
                     if(current.length() > 0) {
                         Start.getStart().getClient().getDisplayField().setText(current.substring(0, current.length() - 1));
                     }
+                } else if(e.getExtendedKeyCode() >= 48 && e.getExtendedKeyCode() <= 57){
+                    int number = e.getExtendedKeyCode() - 48;
+                    String numberString = String.valueOf(number);
+                    String existingNumber = Start.getStart().getClient().getDisplayField().getText();
+                    Start.getStart().getClient().getDisplayField().setText(existingNumber + numberString);
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+            }
+        });
+    }
+
+    public void setupEraseButtons(){
+        ArrayList<Button> list = this.client.getButtonList();
+
+        list.get(0).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String current = Start.getStart().getClient().getDisplayField().getText();
+                if(current.length() > 0){
+                    Start.getStart().getClient().getDisplayField().setText(current.substring(0,current.length() - 1));
+                }
             }
         });
     }

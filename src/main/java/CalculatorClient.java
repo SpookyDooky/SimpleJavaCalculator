@@ -11,6 +11,9 @@ public class CalculatorClient extends Frame {
     private ArrayList<Button> numericalButtons;
     private ButtonListener buttonListener;
 
+    //Delete, ClearEntire, Clear
+    private ArrayList<Button> buttonList;
+
     public CalculatorClient(){
         super("Simple Calculator");
         setLayout(null);
@@ -20,7 +23,8 @@ public class CalculatorClient extends Frame {
 
         this.buttonListener = new ButtonListener(this);
         this.numericalButtons = new ArrayList<Button>();
-        this.arialFont = new Font("Arial",1,30);
+        this.buttonList = new ArrayList<Button>();
+        this.arialFont = new Font("Arial",1,23);
         setup();
     }
 
@@ -67,6 +71,7 @@ public class CalculatorClient extends Frame {
 
     public void setupButtons(){
         setupNumericalButtons();
+        setupEraseButtons();
         this.buttonListener.setupAllButtons();
     }
 
@@ -98,5 +103,30 @@ public class CalculatorClient extends Frame {
 
     public ArrayList<Button> getNumericalButtons(){
         return this.numericalButtons;
+    }
+
+    public void setupEraseButtons(){
+        Button deleteButton = new Button("DEL");
+        deleteButton.setBounds(190,95,50,50);
+        deleteButton.setFont(this.arialFont);
+        add(deleteButton);
+
+        Button clearEntireButton = new Button("CE");
+        clearEntireButton.setBounds(190,150,50,50);
+        clearEntireButton.setFont(this.arialFont);
+        add(clearEntireButton);
+
+        Button clearButton = new Button("C");
+        clearButton.setBounds(190,205,50,50);
+        clearButton.setFont(this.arialFont);
+        add(clearButton);
+
+        this.buttonList.add(deleteButton);
+        this.buttonList.add(clearEntireButton);
+        this.buttonList.add(clearButton);
+    }
+
+    public ArrayList<Button> getButtonList(){
+        return this.buttonList;
     }
 }

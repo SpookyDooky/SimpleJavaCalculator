@@ -12,7 +12,7 @@ public class CalculatorClient extends Frame {
     private ArrayList<Button> numericalButtons;
     private ButtonListener buttonListener;
 
-    //Delete, ClearEntire, Clear
+    //Delete, ClearEntire, Clear, left bracket, right bracket
     private ArrayList<Button> buttonList;
 
     public CalculatorClient(){
@@ -90,6 +90,8 @@ public class CalculatorClient extends Frame {
     public void setupButtons(){
         setupNumericalButtons();
         setupEraseButtons();
+        setupBracketButtons();
+        //Method for attatching action listeners to all buttons of the calculator.
         this.buttonListener.setupAllButtons();
     }
 
@@ -151,6 +153,17 @@ public class CalculatorClient extends Frame {
 
     public void setupBracketButtons(){
         Button leftBracketButton = new Button("(");
+        leftBracketButton.setBounds(135,315,50,50);
+        leftBracketButton.setFont(this.arialFont);
+        add(leftBracketButton);
+
+        Button rightBracketButton = new Button(")");
+        rightBracketButton.setBounds(190,315,50,50);
+        rightBracketButton.setFont(this.arialFont);
+        add(rightBracketButton);
+
+        this.buttonList.add(leftBracketButton);
+        this.buttonList.add(rightBracketButton);
     }
 
     public ArrayList<Button> getButtonList(){

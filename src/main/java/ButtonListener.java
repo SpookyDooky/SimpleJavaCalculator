@@ -17,6 +17,7 @@ public class ButtonListener {
         setupNumericalListeners();
         setupKeyboardButtons();
         setupEraseButtons();
+        setupBracketButtons();
     }
 
     public void setupNumericalListeners(){
@@ -93,6 +94,23 @@ public class ButtonListener {
                 fixFocus();
             }
         });
+    }
+
+    public void setupBracketButtons(){
+        final ArrayList<Button> list = this.client.getButtonList();
+        //Both brackets
+        for(int x = 3; x < 5;x++){
+            final int finalX = x;
+            list.get(x).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(e.getSource() == list.get(finalX)){
+                        String original = Start.getStart().getClient().getInputField().getText();
+                        Start.getStart().getClient().getInputField().setText(original + list.get(finalX).getLabel());
+                    }
+                }
+            });
+        }
     }
 
     public void fixFocus(){

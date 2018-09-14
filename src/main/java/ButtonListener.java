@@ -66,7 +66,7 @@ public class ButtonListener {
 
     public void setupEraseButtons(){
         ArrayList<Button> list = this.client.getButtonList();
-
+        //Delete
         list.get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,6 +74,21 @@ public class ButtonListener {
                 if(current.length() > 0){
                     Start.getStart().getClient().getDisplayField().setText(current.substring(0,current.length() - 1));
                 }
+            }
+        });
+        //Clear entirely
+        list.get(1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Start.getStart().getClient().getDisplayField().setText("");
+                //Later on clear the stored numbers/calculations in the memory aswell
+            }
+        });
+        //Clear
+        list.get(2).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Start.getStart().getClient().getDisplayField().setText("");
             }
         });
     }

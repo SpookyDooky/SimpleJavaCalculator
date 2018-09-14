@@ -27,8 +27,8 @@ public class ButtonListener {
             currentButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if(e.getSource() == currentButton){
-                        String existingNumber = Start.getStart().getClient().getDisplayField().getText();
-                        Start.getStart().getClient().getDisplayField().setText(existingNumber + currentButton.getLabel());
+                        String existingNumber = Start.getStart().getClient().getInputField().getText();
+                        Start.getStart().getClient().getInputField().setText(existingNumber + currentButton.getLabel());
                     }
                     fixFocus();
                 }
@@ -45,15 +45,15 @@ public class ButtonListener {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE){
-                    String current = Start.getStart().getClient().getDisplayField().getText();
+                    String current = Start.getStart().getClient().getInputField().getText();
                     if(current.length() > 0) {
-                        Start.getStart().getClient().getDisplayField().setText(current.substring(0, current.length() - 1));
+                        Start.getStart().getClient().getInputField().setText(current.substring(0, current.length() - 1));
                     }
                 } else if(e.getExtendedKeyCode() >= 48 && e.getExtendedKeyCode() <= 57){
                     int number = e.getExtendedKeyCode() - 48;
                     String numberString = String.valueOf(number);
-                    String existingNumber = Start.getStart().getClient().getDisplayField().getText();
-                    Start.getStart().getClient().getDisplayField().setText(existingNumber + numberString);
+                    String existingNumber = Start.getStart().getClient().getInputField().getText();
+                    Start.getStart().getClient().getInputField().setText(existingNumber + numberString);
                 }
             }
 
@@ -69,9 +69,9 @@ public class ButtonListener {
         list.get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String current = Start.getStart().getClient().getDisplayField().getText();
+                String current = Start.getStart().getClient().getInputField().getText();
                 if(current.length() > 0){
-                    Start.getStart().getClient().getDisplayField().setText(current.substring(0,current.length() - 1));
+                    Start.getStart().getClient().getInputField().setText(current.substring(0,current.length() - 1));
                 }
                 fixFocus();
             }
@@ -80,7 +80,7 @@ public class ButtonListener {
         list.get(1).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Start.getStart().getClient().getDisplayField().setText("");
+                Start.getStart().getClient().getInputField().setText("");
                 //Later on clear the stored numbers/calculations in the memory aswell
                 fixFocus();
             }
@@ -89,7 +89,7 @@ public class ButtonListener {
         list.get(2).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Start.getStart().getClient().getDisplayField().setText("");
+                Start.getStart().getClient().getInputField().setText("");
                 fixFocus();
             }
         });

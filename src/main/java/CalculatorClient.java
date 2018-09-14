@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class CalculatorClient extends Frame {
 
     private Font arialFont;
-    private TextField displayField;
+    private TextField inputField;
+    private TextField trackerField;
 
     private ArrayList<Button> numericalButtons;
     private ButtonListener buttonListener;
@@ -51,22 +52,39 @@ public class CalculatorClient extends Frame {
     }
 
     public void setupLayout(){
-        setupDisplayField();
+        setupInputField();
+        setupCalculationTrackerField();
         setupButtons();
     }
 
-    public void setupDisplayField(){
+    public void setupInputField(){
         TextField displayField = new TextField(40);
-        displayField.setBounds(25,40,450,50);
+        displayField.setBounds(25,95,450,50);
         displayField.setEditable(false);
         Font newFont = new Font("Arial",Font.PLAIN,40);
         displayField.setFont(newFont);
-        add(displayField);
-        this.displayField = displayField;
+        displayField.enableInputMethods(false);
+        this.inputField = displayField;
+        add(inputField);
     }
 
-    public TextField getDisplayField(){
-        return this.displayField;
+    public void setupCalculationTrackerField(){
+        TextField trackerField = new TextField(40);
+        trackerField.setBounds(25,40,450,50);
+        trackerField.setEditable(false);
+        Font newFont = new Font("Arial", Font.PLAIN,40);
+        trackerField.setFont(newFont);
+        trackerField.enableInputMethods(false);
+        this.trackerField = trackerField;
+        add(trackerField);
+    }
+
+    public TextField getInputField(){
+        return this.inputField;
+    }
+
+    public TextField getTrackerField(){
+        return this.trackerField;
     }
 
     public void setupButtons(){
@@ -77,12 +95,12 @@ public class CalculatorClient extends Frame {
 
     public void setupNumericalButtons(){ //Grid size is 3 * 3
         int x = 25;
-        int y = 95;
+        int y = 150;
         //Height & width are 50
         int number = 9;
         for(int column = 0; column < 3; column++){
             if(column > 0){
-                y = 95;
+                y = 150;
                 y = y + column * 55; //Distance between buttons is 5
             }
             for(int row = 0; row < 3; row++){
@@ -101,7 +119,7 @@ public class CalculatorClient extends Frame {
 
         Button zeroButton = new Button("0");
         zeroButton.setFont(this.arialFont);
-        zeroButton.setBounds(80,260,50,50);
+        zeroButton.setBounds(80,315,50,50);
         add(zeroButton);
         this.numericalButtons.add(zeroButton);
     }
@@ -112,23 +130,27 @@ public class CalculatorClient extends Frame {
 
     public void setupEraseButtons(){
         Button deleteButton = new Button("DEL");
-        deleteButton.setBounds(190,95,50,50);
+        deleteButton.setBounds(190,150,50,50);
         deleteButton.setFont(this.arialFont);
         add(deleteButton);
 
         Button clearEntireButton = new Button("CE");
-        clearEntireButton.setBounds(190,150,50,50);
+        clearEntireButton.setBounds(190,205,50,50);
         clearEntireButton.setFont(this.arialFont);
         add(clearEntireButton);
 
         Button clearButton = new Button("C");
-        clearButton.setBounds(190,205,50,50);
+        clearButton.setBounds(190,260,50,50);
         clearButton.setFont(this.arialFont);
         add(clearButton);
 
         this.buttonList.add(deleteButton);
         this.buttonList.add(clearEntireButton);
         this.buttonList.add(clearButton);
+    }
+
+    public void setupBracketButtons(){
+        Button leftBracketButton = new Button("(");
     }
 
     public ArrayList<Button> getButtonList(){

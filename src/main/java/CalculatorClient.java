@@ -98,6 +98,12 @@ public class CalculatorClient extends Frame {
                 this.numericalButtons.add(button);
             }
         }
+
+        Button zeroButton = new Button("0");
+        zeroButton.setFont(this.arialFont);
+        zeroButton.setBounds(80,260,50,50);
+        add(zeroButton);
+        this.numericalButtons.add(zeroButton);
     }
 
     public ArrayList<Button> getNumericalButtons(){

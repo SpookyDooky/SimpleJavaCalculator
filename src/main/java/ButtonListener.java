@@ -22,7 +22,7 @@ public class ButtonListener {
     public void setupNumericalListeners(){
         ArrayList<Button> buttons = this.client.getNumericalButtons();
 
-        for(int x = 0; x < 9; x++){
+        for(int x = 0; x < 10; x++){
             final Button currentButton = buttons.get(x);
             currentButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

@@ -30,8 +30,7 @@ public class ButtonListener {
                         String existingNumber = Start.getStart().getClient().getDisplayField().getText();
                         Start.getStart().getClient().getDisplayField().setText(existingNumber + currentButton.getLabel());
                     }
-                    Start.getStart().getClient().setFocusable(true);
-                    Start.getStart().getClient().requestFocusInWindow();
+                    fixFocus();
                 }
             });
         }
@@ -74,6 +73,7 @@ public class ButtonListener {
                 if(current.length() > 0){
                     Start.getStart().getClient().getDisplayField().setText(current.substring(0,current.length() - 1));
                 }
+                fixFocus();
             }
         });
         //Clear entirely
@@ -82,6 +82,7 @@ public class ButtonListener {
             public void actionPerformed(ActionEvent e) {
                 Start.getStart().getClient().getDisplayField().setText("");
                 //Later on clear the stored numbers/calculations in the memory aswell
+                fixFocus();
             }
         });
         //Clear
@@ -89,7 +90,13 @@ public class ButtonListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Start.getStart().getClient().getDisplayField().setText("");
+                fixFocus();
             }
         });
+    }
+
+    public void fixFocus(){
+        this.client.setFocusable(true);
+        this.client.requestFocusInWindow();
     }
 }
